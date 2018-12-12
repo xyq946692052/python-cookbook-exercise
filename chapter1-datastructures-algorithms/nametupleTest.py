@@ -16,4 +16,23 @@ def compute_cost(records):
         total += s.shares * s.price
     return total
 
+s = Stock('ACME', 100, 12.0)
+print(s, s.name, s.shares, s.price)
 
+# if change the value of nametuple, you need use _replace
+s = s._replace(shares=200)
+print(s)
+
+
+Stock = namedtuple('Stock', ['name', 'shares', 'price', 'date', 'time'])
+# Create a prototype instance
+stock_prototype = Stock('', 0, 0.0, None, None)
+
+# Function to convert a dictinary to a Stock
+def dict_to_stock(s):
+    return stock_prototype._replace(**s)
+
+a = {'name': 'ACME', 'shares':100, 'price':123.45}
+print(dict_to_stock(a))
+b = {'name':'ACME', 'shares':100, 'price':123.45, 'date':'12/12/2018'}
+print(dict_to_stock(b))
